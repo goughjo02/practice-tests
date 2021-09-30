@@ -1,10 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 export const useTextInput = (initialValue = "") => {
   const [value, setValue] = useState<string>(initialValue);
   const onChangeText = (newValue: string) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
   return {
     value,
     onChangeText,
