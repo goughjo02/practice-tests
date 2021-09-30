@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   id: string;
   title: string;
-  onClick: () => {};
+  onClick: () => void;
 };
 
 const Button = ({ title, onClick }: Props) => {
