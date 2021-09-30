@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Select, { Options } from "../../components/Select";
+import Select, { Options, useSelect } from "../../components/Select";
 
 describe("Select", () => {
   it("only allows one option to be sleected", () => {
@@ -27,7 +27,11 @@ describe("Select", () => {
     ];
     const id = "test-select-id";
     const label = "test-select-label";
-    render(<Select id={id} label={label} options={options} />);
+    const TestComponent = () => {
+      const select = useSelect();
+      return <Select id={id} label={label} options={options} {...select} />;
+    };
+    render(<TestComponent />);
     const component = screen.getByRole("combobox");
     const testSelectValue = (value: string) => {
       userEvent.selectOptions(component, [value]);
